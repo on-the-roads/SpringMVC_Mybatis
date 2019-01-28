@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- namespace 等于mapper接口地址 -->
 <mapper namespace="com.ssm.Mapper.UserMapper" >
+
   <resultMap id="BaseResultMap" type="com.ssm.Po.User" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="username" property="username" jdbcType="VARCHAR" />
@@ -8,6 +10,8 @@
     <result column="sex" property="sex" jdbcType="CHAR" />
     <result column="address" property="address" jdbcType="VARCHAR" />
   </resultMap>
+  
+  <!-- 定义sql片段，id是sql片段的唯一标识 -->
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -74,6 +78,7 @@
     <if test="distinct" >
       distinct
     </if>
+    <!-- 引用sql片段，如果refid指定的id不在mapper文件中，则需要在前面加上namespace -->
     <include refid="Base_Column_List" />
     from user
     <if test="_parameter != null" >
@@ -182,7 +187,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.ssm.Po.User" >
+  <update id="updateByPrimaryKeySelective" parameterType="User" >
     update user
     <set >
       <if test="username != null" >

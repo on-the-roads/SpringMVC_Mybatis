@@ -22,7 +22,7 @@
 		<!-- contextConfigLocation配置springmvc加载的配置文件（配置处理器映射器、适配器等等） 如果不配置contextConfigLocation，默认加载的是/WEB-INF/servlet名称-serlvet.xml（springmvc-servlet.xml） -->
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>classpath:SpringMVC/springmvc.xml</param-value>
+			<param-value>classpath:spring/springmvc.xml</param-value>
 		</init-param>
 	</servlet>
 
