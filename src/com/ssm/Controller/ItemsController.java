@@ -79,7 +79,13 @@ public class ItemsController {
 		// View指定视图
 //		modelAndView.setViewName("success");
 		
-		return "success";
+		return "successEdit";
 	}
 	
+	@RequestMapping("/deleteItems.action")
+	public String deleteItems(Integer[] items_id) throws Exception{
+		
+		itemsService.deleteItems(items_id);
+		return "successDelete";
+	}
 }

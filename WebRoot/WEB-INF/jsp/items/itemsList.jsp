@@ -7,9 +7,21 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>查询商品列表</title>
+<script type="text/javascript">
+function deleteItems(){
+	//提交form
+	document.itemsForm.action="${pageContext.request.contextPath }/items/deleteItems.action";
+	document.itemsForm.submit();
+}
+function queryItems(){
+//提交form
+	document.itemsForm.action="${pageContext.request.contextPath }/items/queryItems.action";
+	document.itemsForm.submit();
+}
+</script>
 </head>
 <body> 
-<form action="${pageContext.request.contextPath }/items/queryItems.action" method="post">
+<form name="itemsForm" action="${pageContext.request.contextPath }/items/queryItems.action" method="post">
 查询条件：
 <table width="100%" border=1>
 <tr>
@@ -18,7 +30,8 @@
 	</td>
 </tr>
 <tr>
-<td><input type="submit" value="查询"/></td>
+<td><input type="button" onclick="queryItems()" value="查询"/></td>
+<td><input type="button" onclick="deleteItems()"  value="批量删除"/></td>
 </tr>
 </table>
 商品列表：
