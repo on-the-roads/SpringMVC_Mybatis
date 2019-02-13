@@ -9,9 +9,14 @@
 <title>查询商品列表</title>
 </head>
 <body> 
-<form action="${pageContext.request.contextPath }/items/queryItem.action" method="post">
+<form action="${pageContext.request.contextPath }/items/queryItems.action" method="post">
 查询条件：
 <table width="100%" border=1>
+<tr>
+	<td>
+	商品名称：<input type="text" name="itemsCustom.name" /><!-- 注意与ItemsQueryVo.java的属性名保持一致 -->
+	</td>
+</tr>
 <tr>
 <td><input type="submit" value="查询"/></td>
 </tr>
@@ -19,6 +24,7 @@
 商品列表：
 <table width="100%" border=1>
 <tr>
+	<td>序号</td>
 	<td>商品名称</td>
 	<td>商品价格</td>
 	<td>生产日期</td>
@@ -27,6 +33,7 @@
 </tr>
 <c:forEach items="${itemsList}" var="item">
 <tr>
+	<td><input type="checkbox" name="items_id" value="${item.id}"/></td>
 	<td>${item.name }</td>
 	<td>${item.price }</td>
 	<td><fmt:formatDate value="${item.createtime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>

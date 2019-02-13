@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ssm.Po.ItemsCustom;
+import com.ssm.Po.ItemsQueryVo;
 import com.ssm.Service.ItemsService;
 
 /**
@@ -27,11 +28,10 @@ public class ItemsController {
 	//使用@RequestMapping来实现queryItems（）方法和url一一映射
 	//一般建议将url和方法名称写成一样
 	@RequestMapping("/queryItems.action")
-	public ModelAndView queryItems() throws Exception {
+	public ModelAndView queryItems(ItemsQueryVo itemsQueryVo) throws Exception {
 
 		// 调用service查询数据库
-		List<ItemsCustom> itemsList = itemsService.findItemsList(null);
-
+		List<ItemsCustom> itemsList = itemsService.findItemsList(itemsQueryVo);
 		// 返回ModelAndView
 		ModelAndView modelAndView = new ModelAndView();
 		// 相当 于request的setAttribut，在jsp页面中通过itemsList取数据
