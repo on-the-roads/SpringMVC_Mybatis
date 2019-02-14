@@ -2,6 +2,7 @@ package com.ssm.Controller;
 
 import java.util.List;
 
+import javax.jws.WebParam.Mode;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,22 +71,41 @@ public class ItemsController {
 	public String editItemSubmit(HttpServletRequest request,@RequestParam(value="id",required=true)Integer Itemsid,ItemsCustom itemsCustom)throws Exception {
 		
 		itemsService.updateItems(Itemsid, itemsCustom);
-		// 返回ModelAndView
-		ModelAndView modelAndView = new ModelAndView();
-		
-//		//商品信息放入Model
-//		modelAndView.addObject("itemsCustom", itemsCustom);
-//		
-		// View指定视图
-//		modelAndView.setViewName("success");
-		
 		return "successEdit";
 	}
 	
+	//批量修改页面
 	@RequestMapping("/deleteItems.action")
 	public String deleteItems(Integer[] items_id) throws Exception{
 		
 		itemsService.deleteItems(items_id);
 		return "successDelete";
+	}
+	
+	//批量编辑页面展示
+	@RequestMapping("/editItemsAll.action")
+	public ModelAndView editItemsAll(ItemsQueryVo itemsQueryVo) throws Exception{
+		
+		// 调用service查询数据库
+		List<ItemsCustom> itemsList = itemsService.findItemsList(itemsQueryVo);
+		// 返回ModelAndView
+		ModelAndView modelAndView = new ModelAndView();
+		// 相当 于request的setAttribut，在jsp页面中通过itemsList取数据
+		modelAndView.addObject("itemsList", itemsList);
+
+		// 指定视图
+		modelAndView.setViewName("items/editItemsAll");
+
+		return modelAndView;
+	}
+	
+	//批量编辑提交
+	@RequestMapping("/editItemsAllSubmit.action")
+	public String editItemsAllSubmit(ItemsQueryVo itemsQueryVo) throws Exception{
+		for(ItemsCustom itemsCustom:itemsQueryVo.getItemsCustomList()){
+			Integer Itemsid=itemsCustom.getId();
+	     	itemsService.updateItems(Itemsid, itemsCustom);
+		}
+		return "successEdit";
 	}
 }
