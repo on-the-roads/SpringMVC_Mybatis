@@ -4,8 +4,13 @@ import java.util.List;
 
 import javax.jws.WebParam.Mode;
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.constraints.Size;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,7 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.ssm.Po.ItemsCustom;
 import com.ssm.Po.ItemsQueryVo;
 import com.ssm.Service.ItemsService;
-
+import com.ssm.Controller.validation.validationGroup1;
 /**
  * 使用注解开发Handler（注意：注解映射器和注解适配器也要同时搭配使用）
  * 不用再实现接口，因此可以添加不止add()的其他方法
@@ -67,9 +72,22 @@ public class ItemsController {
 	//提交修改页面
 	//如果不使用@RequestParam，要求request传入参数名称和controller方法的形参名称一致，方可绑定成功。
 	//如果使用@RequestParam，不用限制request传入参数名称和controller方法的形参名称一致。
+	//校验：在需要校验的pojo前面加上@Validated,后面加上BindingResult bindingResult，其中bindingResult用于接收错误信息。
+	//分组校验：添加分组，则只校验pojo所属分组的方法。eg：@Size(min=1,max=30,message="{items.name.length.err}",groups={validationGroup1.class})则只显示字符长度的错误
 	@RequestMapping("/editItemsSubmit.action")
-	public String editItemSubmit(HttpServletRequest request,@RequestParam(value="id",required=true)Integer Itemsid,ItemsCustom itemsCustom)throws Exception {
-		
+	public String editItemSubmit(Model model,HttpServletRequest request,@RequestParam(value="id",required=true)Integer Itemsid,
+			@Validated(value={validationGroup1.class}) ItemsCustom itemsCustom,BindingResult bindingResult)throws Exception {
+		//在controller中将错误信息传到页面
+		if(bindingResult.hasErrors())
+		{
+			List<ObjectError> errList=bindingResult.getAllErrors();
+			for(ObjectError error:errList){
+				System.err.println(error.getDefaultMessage());
+			}
+			model.addAttribute("errList", errList);
+			//出错则重新定位到商品编辑页面
+			return "items/editItems";
+		}
 		itemsService.updateItems(Itemsid, itemsCustom);
 		return "successEdit";
 	}

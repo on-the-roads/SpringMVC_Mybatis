@@ -3,4 +3,5 @@
   **version2: 实现商品修改功能**  
   **version3: 实现商品批量删除功能**  
   **version4: 实现商品批量修改功能**  
+  **version5.1: 添加校验功能（controller层）**  
 

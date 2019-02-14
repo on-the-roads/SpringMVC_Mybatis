@@ -35,5 +35,8 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/spring-tx-3.2.0.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/spring-web-3.2.0.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/spring-webmvc-3.2.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/hibernate-validator-4.3.0.Final.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jboss-logging-3.1.0.CR2.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/validation-api-1.0.0.GA.jar"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>

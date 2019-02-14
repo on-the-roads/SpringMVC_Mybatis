@@ -13,6 +13,14 @@
 
 <form id="itemForm" action="${pageContext.request.contextPath }/items/editItemsSubmit.action" method="post" >
 <input type="hidden" name="id" value="${itemsCustom.id }"/>
+<font color="#FF0000">
+<c:if test="${errList!=null}">
+	<c:forEach items="${errList}" var="error"> 
+	${error.defaultMessage } <br>
+	</c:forEach>
+</c:if>
+</font><br>
+
 修改商品信息：
 <table width="100%" border=1>
 <tr>

@@ -2,15 +2,24 @@ package com.ssm.Po;
 
 import java.util.Date;
 
-public class Items {
-    private Integer id;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
+import com.ssm.Controller.validation.validationGroup1;
+
+public class Items {
+
+    private Integer id;
+	//字符长度校验
+	@Size(min=1,max=30,message="{items.name.length.err}",groups={validationGroup1.class})
     private String name;
 
     private Float price;
 
 
     private String pic;
+    //非空校验
+    @NotNull(message="{items.creatime.isNull}")
     private Date createtime;
 
     private String detail;
