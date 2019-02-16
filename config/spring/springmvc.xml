@@ -75,5 +75,20 @@
 		<!-- 配置jsp路径的后缀 -->
 		<property name="suffix" value=".jsp" />
 	</bean>
-
+	
+<!-- *************************全局异常处理器********************************
+		只要实现了HandlerExceptionResolver接口就是全局异常处理器，只需要配置bean就可以了，不需要id
+	-->
+	 <bean class="com.ssm.Exception.ItemsCustomExceptionResolver"> 
+	</bean>
+	 
+	
+	
+	<!-- *************************文件上传*******************************-->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	<!-- 设置上传文件的最大尺寸为5MB -->
+	<property name="maxUploadSize">
+		<value>5242880</value>
+	</property>
+	</bean>
 </beans>

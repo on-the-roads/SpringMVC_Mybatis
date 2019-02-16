@@ -34,9 +34,11 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/spring-test-3.2.0.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/spring-tx-3.2.0.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/spring-web-3.2.0.RELEASE.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/spring-webmvc-3.2.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/spring-webmvc-3.2.0.RELEASE.jar" sourcepath="G:/JAVA/框架/SpringMVC和Mybatis/Springmvc+Mybatis由浅入深全套视频教程/资料/springmvc/day01/res/jar包/spring3.2.0源码/spring-webmvc-3.2.0.RELEASE-sources.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/hibernate-validator-4.3.0.Final.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jboss-logging-3.1.0.CR2.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/validation-api-1.0.0.GA.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-fileupload-1.2.2.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-io-2.4.jar"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>

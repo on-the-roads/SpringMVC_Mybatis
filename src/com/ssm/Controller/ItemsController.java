@@ -1,10 +1,10 @@
 package com.ssm.Controller;
 
+import java.io.File;
 import java.util.List;
+import java.util.UUID;
 
-import javax.jws.WebParam.Mode;
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.constraints.Size;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -14,12 +14,13 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ssm.Controller.validation.validationGroup1;
 import com.ssm.Po.ItemsCustom;
 import com.ssm.Po.ItemsQueryVo;
 import com.ssm.Service.ItemsService;
-import com.ssm.Controller.validation.validationGroup1;
 /**
  * 使用注解开发Handler（注意：注解映射器和注解适配器也要同时搭配使用）
  * 不用再实现接口，因此可以添加不止add()的其他方法
@@ -57,7 +58,7 @@ public class ItemsController {
 		
 		// 调用service根据id查询商品信息
 		ItemsCustom itemsCustom = itemsService.fingItemById(id);
-		
+	
 		// 返回ModelAndView
 		ModelAndView modelAndView = new ModelAndView();
 		
@@ -75,8 +76,7 @@ public class ItemsController {
 	//校验：在需要校验的pojo前面加上@Validated,后面加上BindingResult bindingResult，其中bindingResult用于接收错误信息。
 	//分组校验：添加分组，则只校验pojo所属分组的方法。eg：@Size(min=1,max=30,message="{items.name.length.err}",groups={validationGroup1.class})则只显示字符长度的错误
 	@RequestMapping("/editItemsSubmit.action")
-	public String editItemSubmit(Model model,HttpServletRequest request,@RequestParam(value="id",required=true)Integer Itemsid,
-			@Validated(value={validationGroup1.class}) ItemsCustom itemsCustom,BindingResult bindingResult)throws Exception {
+	public String editItemSubmit(Model model,@RequestParam(value="id",required=true)Integer Itemsid,@Validated(value={validationGroup1.class}) ItemsCustom itemsCustom,BindingResult bindingResult,MultipartFile items_pic)throws Exception {
 		//在controller中将错误信息传到页面
 		if(bindingResult.hasErrors())
 		{
@@ -87,6 +87,21 @@ public class ItemsController {
 			model.addAttribute("errList", errList);
 			//出错则重新定位到商品编辑页面
 			return "items/editItems";
+		}
+		//上传图片
+		String originalFilename=items_pic.getOriginalFilename();
+		if(items_pic!=null&&originalFilename!=null&&originalFilename.length()>0)
+		{
+			//存储图片的物理路径
+			String picPath="G:\\works\\picture\\temp\\";
+			//新的图片名称
+			String new_picName=UUID.randomUUID()+originalFilename.substring(originalFilename.lastIndexOf("."));
+			//新图片
+			File newFile= new File(picPath+new_picName);
+			//将内存中的数据写入磁盘
+			items_pic.transferTo(newFile);
+			//将新的图片写入itemsCustom中
+			itemsCustom.setPic(new_picName);
 		}
 		itemsService.updateItems(Itemsid, itemsCustom);
 		return "successEdit";

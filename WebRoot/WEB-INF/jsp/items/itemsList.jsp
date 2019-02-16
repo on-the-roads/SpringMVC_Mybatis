@@ -43,7 +43,7 @@ function editItemsAll(){
 商品列表：
 <table width="100%" border=1>
 <tr>
-	<td>序号</td>
+	<td>选择</td>
 	<td>商品名称</td>
 	<td>商品价格</td>
 	<td>生产日期</td>
