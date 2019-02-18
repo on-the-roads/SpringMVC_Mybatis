@@ -8,3 +8,4 @@
   **version5.1: 添加校验功能（controller层）**  
   **version5.2: 添加异常处理功能（自定义异常，全局异常处理器）**  
   **version5.3: 添加上传图片功能(controller层以及jsp）**  
+  **version5.4: json数据交互功能测试**  
