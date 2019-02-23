@@ -1,5 +1,5 @@
 ## 商品后台管理系统
-整合Spring+SpringMVC+MyBatis+Mysql框架，搭建了一个简单的商品后台管理系统，实现了对商品信息的查询、修改及其他批量操作。  
+整合Spring+SpringMVC+MyBatis框架，搭建了一个简单的商品后台管理系统，实现了对商品信息的查询、修改及其他批量操作。  
 
 ## 功能实现
   version0: 搭建框架，创建基本的controller层，service层和model层  
