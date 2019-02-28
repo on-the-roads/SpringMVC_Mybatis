@@ -81,6 +81,10 @@
 	-->
 	 <bean class="com.ssm.Exception.ItemsCustomExceptionResolver"> 
 	</bean>
+	
+<!-- *************************静态资源解析：js、css、img...*******************************-->
+	<mvc:resources location="/js/" mapping="/js/**"/>
+	<mvc:resources location="/img/" mapping="/img/**"/>
 	 
 	
 	

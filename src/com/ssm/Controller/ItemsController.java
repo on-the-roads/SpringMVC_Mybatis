@@ -11,9 +11,11 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -48,6 +50,15 @@ public class ItemsController {
 		modelAndView.setViewName("items/itemsList");
 
 		return modelAndView;
+	}
+	
+	//查询商品信息，输出json数据（利用RESTful架构完成）
+	//@PathVariable作用：将url模板请求的变量映射到方法的参数。若模板变量和方法参数名称一致，则可以不用@PathVariable
+	//使用RESTful支持注意要将web.xml中的前端控制器为'/'，同时也要在springmvc.xml中配置静态资源解析方法
+	@RequestMapping(value="/findItems/{id}")
+	public @ResponseBody ItemsCustom findItems(@PathVariable("id")Integer id) throws Exception {
+		ItemsCustom itemsCustom=itemsService.fingItemById(id);
+		return itemsCustom;
 	}
 	
 	//商品修改页面展示
