@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -56,7 +57,7 @@ public class ItemsController {
 	//@PathVariable作用：将url模板请求的变量映射到方法的参数。若模板变量和方法参数名称一致，则可以不用@PathVariable
 	//使用RESTful支持注意要将web.xml中的前端控制器为'/'，同时也要在springmvc.xml中配置静态资源解析方法
 	@RequestMapping(value="/findItems/{id}")
-	public @ResponseBody ItemsCustom findItems(@PathVariable("id")Integer id) throws Exception {
+	public @ResponseBody ItemsCustom findItems(@PathVariable("id") Integer id) throws Exception {
 		ItemsCustom itemsCustom=itemsService.fingItemById(id);
 		return itemsCustom;
 	}
@@ -152,4 +153,14 @@ public class ItemsController {
 		}
 		return "successEdit";
 	}
+	
+//	@RequestMapping("/login.action")
+//	public String login(HttpSession session, String username, String password)throws Exception {
+//		//service进行身份验证
+//		
+//		//session中保存用户信息
+//		session.setAttribute("username", username);
+//		
+//		return "redirect:items/queryItems.action";
+//	}
 }

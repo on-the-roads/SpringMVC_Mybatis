@@ -10,5 +10,7 @@
   version5.1: 添加校验功能，使用hibernate的校验框架validation    
   version5.2: 添加异常处理功能（自定义异常，全局异常处理器）     
   version5.3: 添加上传图片功能(controller层以及jsp)以及进行json数据交互功能测试     
-  version5.4: 添加RESTful支持，添加根据商品id查询商品信息的方法，利用RESTful的url风格进行验证。Controller层添加方法，在web.xml中配置支持RESTful的前端控制器，同时在springmvc.xml中添加处理例如css、img...的静态资源的方法。
+  version5.4: 添加RESTful支持，添加根据商品id查询商品信息的方法，利用RESTful的url风格进行验证。Controller层添加方法，在web.xml中配置支持RESTful的前端控制器，同时在springmvc.xml中添加处理例如css、img...的静态资源的方法。   
+  version6: 添加管理员用户登录功能，用户名为“ontheroad”,密码为“123”。利用拦截器实现用户登录认证。	如果请求的url是公开地址（这里设置为带login.action的url），则放行；如果用户session 不存在，则在拦截前跳转到登陆页面；如果用户session存在，则放行，继续操作。
+
 

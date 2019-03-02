@@ -25,7 +25,11 @@ function editItemsAll(){
 }
 </script>
 </head>
-<body> 
+<body>  
+欢迎：${username }&nbsp; 
+<c:if test="${username!=null}">
+	<font color="#ff0000"><a href="${pageContext.request.contextPath }/user/logout.action">退出登录</a></font>
+</c:if>
 <form name="itemsForm" action="${pageContext.request.contextPath }/items/queryItems.action" method="post">
 查询条件：
 <table width="100%" border=1>
